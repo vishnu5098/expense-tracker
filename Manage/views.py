@@ -12,7 +12,7 @@ def register_view(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('login')
+            return redirect('dashboard')
     else:
         form = UserCreationForm()
     return render(request, 'main/register.html', {'form': form})
