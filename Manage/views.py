@@ -11,8 +11,9 @@ def register_view(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('dashboard')
+            user = form.save()         # Save the new user
+            login(request, user)       # ✅ Automatically log them in
+            return redirect('dashboard')  # Then send to dashboard
     else:
         form = UserCreationForm()
     return render(request, 'main/register.html', {'form': form})
